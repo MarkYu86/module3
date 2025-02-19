@@ -74,6 +74,8 @@ result += 'greater than 10';
 }
 console.log(result)
 
+
+
 //5
 // function getGreeting(name) {
 //     return 'Hello ' + name + '!';
@@ -99,3 +101,143 @@ console.log(dogOwner)
 console.log(user.location)
 delete user.location;
 console.log(user.location)
+
+
+//6
+const westley = {
+    name: 'Westley',
+    numFingers: 5
+    }
+    const rugen = {
+    name: 'Count Rugen',
+    numFingers: 6
+    }
+    const inigo = {
+    firstName: 'Inigo',
+    lastName:'Montoya',
+    greeting(person) {
+    let greeting = `Hello ${person.name}, my name is ${this.firstName} ${this.lastName}. `;
+    console.log(greeting + this.getCatchPhrase(person));
+    },
+    // getCatchPhrase(person) {
+    //     if (westley.numFingers = 6){
+    //         return "Fezzik, tear his arms off."
+    //     }
+    // return 'Nice to meet you.';}
+    // }
+
+    getCatchPhrase:(westley) => westley.numFingers = 6 
+    ? "Fezzik, tear his arms off." 
+    :"Nice to meet you."
+    }
+    
+    inigo.greeting(westley)
+    inigo.greeting(rugen)
+
+//7
+const basketballGame = {
+    score: 0,
+    freeThrow() {
+    this.score++;
+    return this;
+    },
+    basket() {
+    this.score += 2;
+    return this;
+    },
+    threePointer() {
+    this.score += 3;
+    return this;
+    },
+    foulscore:0,
+    fouls(){
+        this.foulscore++;
+        return this;
+    },
+    halfTime() {
+    console.log('Halftime score is '+this.score);
+    console.log('Halfftime fouls score is '+ this.foulscore)
+    },
+    fullTime(){
+        console.log('Fulltime scrore is '+ this.score);
+        console.log('Fullftime fouls score is '+ this.foulscore)
+    },
+    }
+    //modify each of the above object methods to enable function chaining as below:
+    basketballGame.basket().freeThrow().freeThrow().basket().threePointer().halfTime();
+    basketballGame.basket().freeThrow().freeThrow().basket().threePointer().fullTime();
+    basketballGame.fouls().halfTime();
+    basketballGame.fouls().fullTime();
+//NOT RIGHT NEED TO FIX ON FOULS
+
+//8
+const sydney = {
+    name: 'Sydney',
+    population: 5_121_000,
+    state: 'NSW',
+    founded: '26 January 1788',
+    timezone: 'Australia/Sydney'
+}
+for(let key in sydney){
+    console.log(sydney[key])
+}
+
+const christchurch = {
+    name:'Christchuch',
+    population:396200,
+    state:"Canterbury",
+    timezone:"NZ"
+}
+for(let key in christchurch){
+    console.log(christchurch[key])
+}
+//9
+let teamSports = ['Hockey', 'Cricket', 'Volleyball'];
+let dog1 = 'Bingo';
+let cat1 = { name: 'Fluffy', breed: 'Siberian' };
+
+let moreSports = {...teamSports};
+// moreSports.push("DOTA2");
+// moreSports.unshift("Sleep");
+console.log(teamSports.push("DOTA2"));
+console.log(teamSports.unshift("Sleep"));
+console.log(moreSports)
+
+let dog2 = dog1
+dog2 = "Cat";
+console.log(dog2)
+let cat2 = {...cat1};
+cat2.name = "Dog";
+console.log(cat2)
+console.log(teamSports)
+console.log(cat1)
+
+//10
+function Person(name, age) {
+    this.name = name;
+    this.age = age;
+    this.human = true;
+
+    this.canDrive = () => {
+        return this.age > 18;
+    }
+    }
+let person1 = new Person("Mark","28");
+let person2 = new Person("Takumi","17");
+console.log(person1)
+console.log(person2)
+console.log(person1.canDrive())
+//NEED TO FIX THIS ON Q.e
+class PersonClass {
+    person(name, age) {
+        this.name = name;
+        this.age = age;
+    }
+    canDrive() {
+        return this.age > 18;
+    }
+}
+let person3 = new PersonClass("Zihao", 28);
+console.log(person3)
+console.log(person3.canDrive())
+//NEED TO FIX THIS ON Q.e
