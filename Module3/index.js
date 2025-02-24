@@ -119,3 +119,80 @@ const products = [
     // const numbers = [4,8,1,5,66,23,41]
     // console.log( numbers.sort() ) // [ 1, 23, 4, 41, 5, 66, 8 ] : string comparisons
     // console.log( numbers.sort((num1, num2) => num1 - num2) ) // [ 1, 4, 5, 8, 23, 41, 66 ]    
+   console.log("---------------------------------")
+   
+   let globalVariableCat = 'cat';
+function myFunction() {
+let localVariableDog = 'dog'
+return 'global function with local scope variable '+localVariableDog;
+}
+myFunction() //
+console.log("---------------------------------")
+function makeAdder(x) { // function factory: bundles value of x into the scope of adder
+    return function adder(y) { // closure function 'adder' now has access to both x and y when created
+    return x + y;
+    };
+    }
+    const add5 = makeAdder(5); // sets x to 5, even when adder function is returned and called
+    console.log( add5(10) ) // x is still 5 and y is 10, result is 15
+
+function step1(){
+    return new Promise((resolve) => {
+        setTimeout(() =>{
+            console.log("Started preparing pizza...");
+            resolve();
+        },0)
+    })
+}
+function step2(){
+    return new Promise(resolve =>{
+        setTimeout(() => {
+            console.log("make the base")
+            resolve()
+        },
+        2000)
+    })
+}
+     
+function step3(){
+    return new Promise(resolve => {
+        setTimeout(()=>{
+            console.log("Added the sauce and cheese")
+            resolve()
+        },4000)
+    })
+}
+  
+function step4(){
+    return new Promise(resolve => {
+        setTimeout(() => {
+            console.log("Added the pizza toppings")
+            resolve()
+        },
+        6000)
+    })
+}
+
+const step5 = function(){
+    return new Promise(resolve =>{
+        setTimeout(() => {
+            console.log("Cooked the pizza")
+            resolve();
+        },8000)
+        })
+    }
+
+const step6 = () => {
+    return new Promise(resolve => {
+        setTimeout(() => {
+            console.log("Pizza is ready")
+            resolve()
+        },10000)
+    })
+}
+step1()
+step2()
+step3()
+step4()
+step5()
+step6()
