@@ -247,9 +247,7 @@ function daysInBetween(date1,date2){
     }
     if(date2 > date1){
         result = date2 - date1;
-    } else{result = "Err:only numbers and can not be the same date"}
-    // date1 = result - date2;
-    //  date2 = result - date1;
+    }
    return result
 }
-console.log(daysInBetween(11,11))
+console.log(daysInBetween(10,11))
