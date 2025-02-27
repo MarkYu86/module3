@@ -4,94 +4,94 @@
 // Task 1: Using different function types
 
 // Function declaration
-function startPreparing() {
-  console.log("Started preparing pizza ...");
-}
+// function startPreparing() {
+//   console.log("Started preparing pizza ...");
+// }
 
-// Function expression
-const makeBase = function () {
-  console.log("Made the base");
-};
+// // Function expression
+// const makeBase = function () {
+//   console.log("Made the base");
+// };
 
-// Arrow function
-const addSauceAndCheese = () => {
-  console.log("Added the sauce and cheese");
-};
+// // Arrow function
+// const addSauceAndCheese = () => {
+//   console.log("Added the sauce and cheese");
+// };
 
-// Function declaration
-function addToppings() {
-  console.log("Added the pizza toppings");
-}
+// // Function declaration
+// function addToppings() {
+//   console.log("Added the pizza toppings");
+// }
 
-// Function expression
-const cookPizza = function () {
-  console.log("Cooked the pizza");
-};
+// // Function expression
+// const cookPizza = function () {
+//   console.log("Cooked the pizza");
+// };
 
-// Arrow function
-const pizzaReady = () => {
-  console.log("Pizza is ready");
-};
+// // Arrow function
+// const pizzaReady = () => {
+//   console.log("Pizza is ready");
+// };
 
-// Call the functions in sequence
-console.log("Task 1: Regular Functions");
-startPreparing();
-makeBase();
-addSauceAndCheese();
-addToppings();
-cookPizza();
-pizzaReady();
+// // Call the functions in sequence
+// console.log("Task 1: Regular Functions");
+// startPreparing();
+// makeBase();
+// addSauceAndCheese();
+// addToppings();
+// cookPizza();
+// pizzaReady();
 
 // Task 2: Asynchronous functions with setTimeout
-function runTask2AfterDelay() {
-  console.log("\nTask 2: Asynchronous with setTimeout");
+// function runTask2AfterDelay() {
+//   console.log("\nTask 2: Asynchronous with setTimeout");
 
-  function startPreparingAsync() {
-    setTimeout(() => {
-      console.log("Started preparing pizza ...");
-      makeBaseAsync();
-    }, 1000);
-  }
+//   function startPreparingAsync() {
+//     setTimeout(() => {
+//       console.log("Started preparing pizza ...");
+//       makeBaseAsync();
+//     }, 1000);
+//   }
 
-  function makeBaseAsync() {
-    setTimeout(() => {
-      console.log("Made the base");
-      addSauceAndCheeseAsync();
-    }, 2000);
-  }
+//   function makeBaseAsync() {
+//     setTimeout(() => {
+//       console.log("Made the base");
+//       addSauceAndCheeseAsync();
+//     }, 2000);
+//   }
 
-  function addSauceAndCheeseAsync() {
-    setTimeout(() => {
-      console.log("Added the sauce and cheese");
-      addToppingsAsync();
-    }, 1000);
-  }
+//   function addSauceAndCheeseAsync() {
+//     setTimeout(() => {
+//       console.log("Added the sauce and cheese");
+//       addToppingsAsync();
+//     }, 1000);
+//   }
 
-  function addToppingsAsync() {
-    setTimeout(() => {
-      console.log("Added the pizza toppings");
-      cookPizzaAsync();
-    }, 1500);
-  }
+//   function addToppingsAsync() {
+//     setTimeout(() => {
+//       console.log("Added the pizza toppings");
+//       cookPizzaAsync();
+//     }, 1500);
+//   }
 
-  function cookPizzaAsync() {
-    setTimeout(() => {
-      console.log("Cooked the pizza");
-      pizzaReadyAsync();
-    }, 3000);
-  }
+//   function cookPizzaAsync() {
+//     setTimeout(() => {
+//       console.log("Cooked the pizza");
+//       pizzaReadyAsync();
+//     }, 3000);
+//   }
 
-  function pizzaReadyAsync() {
-    setTimeout(() => {
-      console.log("Pizza is ready");
-      // After Task 2 is complete, start Task 3
-      setTimeout(runTask3, 1000);
-    }, 1000);
-  }
+//   function pizzaReadyAsync() {
+//     setTimeout(() => {
+//       console.log("Pizza is ready");
+//       // After Task 2 is complete, start Task 3
+//       setTimeout(runTask3, 1000);
+//     }, 1000);
+//   }
 
-  // Start the asynchronous process
-  startPreparingAsync();
-}
+//   // Start the asynchronous process
+//   startPreparingAsync();
+// }
 
 // Task 3: Using Promises
 function runTask3() {
