@@ -96,17 +96,23 @@ const newCar2 = {...newCar,model:'718'}
 setTimeout(newCar2.description.bind(newCar2),500)
 
 //6
-function multiply(a, b, c , d) {
-    console.log( a * b + c - d );
-    }
-    multiply.delay(500)(5, 5, 3, 2); // prints 25 after 500 milliseconds
+console.log("ex6-----------------------------")
 Function.prototype.delay = function(ms){
-    return(...args)=>{
-        setTimeout(()=>{
-            this.apply(null,args)
-        },ms)
-    }
+  return (...args) => {
+    setTimeout(()=>{
+      this.apply(null,args);
+    },ms)
+  }
 }
+function multiply(a, b) {
+  console.log( a * b );
+  }
+  multiply.delay(500)(5, 5); // prints 25 after 500 milliseconds
+
+function multiply(a,b,c,d){
+  console.log(a * b + c + d)
+}
+multiply.delay(500)(2,3,4,5)
 //7
 console.log("ex7---------------------------------------");
 
@@ -150,12 +156,33 @@ const myClock = new PrecisionClock("my precise clock:", 5000);
 console.log(myClock);
 //8
 console.log('ex8---------------------------')
-function orderItems(itemName) {
-    return `Order placed for: ${itemName}`;
+function orderItems(...itemName) {
+    return `Order placed for: ${itemName.join(' , ')}`;
     }
     // create a decorated version of the original function
-    const validatedOrderItem = validateStringArg(orderItems);
-    console.log(validatedOrderItem("Apple Watch")); // should run the function
-    console.log(validatedOrderItem(123)); // should throw an error
+// function validateStringArg(fn){
+//      return function(...argument){
+//       if (typeof argument !== 'string'){
+//         throw new Error('this is not string')
+//       }
+//       return fn(argument)
+//      }
+//   }
+  function validateStringArg1(fn){
+    return function(...arguments){
+      for(let argument of arguments){
+        if (typeof argument !== "str"){
+          throw new Error("they are not strings")
+        }
+      }
+      return fn(...arguments)
+    }
+  }
+  const validatedOrderItem = validateStringArg1(orderItems);
+  console.log(validatedOrderItem("Apple Watch")); // should run the function
+  // console.log(validatedOrderItem(123)); // should throw an error
+  console.log(orderItems("a","b","c"))
+  // console.log(validatedOrderItem("a","b",123))// should throw an error
+
 //9
 //10
