@@ -1,4 +1,5 @@
 //This is a copy of jsa.js
+//Maybe not to use this one for giving feedback
 // Used chatGPT turned each function to async function
 // to orgnised each exercise
 //so it doesnt look messy in terminal log
@@ -238,13 +239,13 @@ async function ex8() {
   console.log("ex8---------------------------");
 
   function validateStringArg1(fn) {
-    return function (...arguments) {
-      for (let argument of arguments) {
-        if (typeof argument !== "string") {
+    return function (...args) {
+      for (let arg of args) {
+        if (typeof arg !== "string") {
           throw new Error("they are not strings");
         }
       }
-      return fn(...arguments);
+      return fn(...args);
     };
   }
 
@@ -291,6 +292,38 @@ async function ex9() {
   console.log("There appears to have been a delay.");
 }
 
+//10
+    // run 'npm init' and accept all the defaults
+    // run 'npm install node-fetch'
+    // run 'npm pkg set type=module'
+import fetch from 'node-fetch'
+globalThis.fetch = fetch
+
+async function ex10(){
+    function fetchURLData(url) {
+        let fetchPromise = fetch(url).then(response => {
+        if (response.status === 200) {
+        return response.json();
+        } else {
+        throw new Error(`Request failed with status ${response.status}`);
+        }
+        });
+        return fetchPromise;
+        }
+    async function fetch(url){
+      try{
+        const response = await fetch(url);
+        if(response.status === 200){
+          return await response.json();
+        }else{
+          throw new Error(`Error:${response.status}`)
+        }
+      }
+      catch(error){
+        throw new Error(`Error: ${error.message}`)
+      }
+    }
+}
 // Sequential Execution of all exercises
 async function runExercises() {
   await ex1();
@@ -302,6 +335,6 @@ async function runExercises() {
   await ex7();
   await ex8();
   await ex9();
+  await ex10();
 }
-
 runExercises();

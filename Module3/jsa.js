@@ -15,14 +15,13 @@ counter1(); // 11
 counter2(); // 28
 counter2(); // 36
 
-
 //2
 console.log("ex2-----------------------------");
 let delayMsg = (msg) => {
   console.log(`This message will be printed after a delay: ${msg}`);
 };
-
-clearTimeout(setTimeout(delayMsg, 10000, "#5: Huge delayed by 10000ms"));
+let cancelTimeout = setTimeout(delayMsg, 10000, "#5: Huge delayed by 10000ms");
+clearTimeout(cancelTimeout)
 setTimeout(delayMsg, 100, "#1: Delayed by 100ms");
 setTimeout(delayMsg, 20, "#2: Delayed by 20ms");
 setTimeout(delayMsg, 0, "#3: Delayed by 0ms");
@@ -46,8 +45,7 @@ function printMe(msg) {
 printMe = debounce(printMe);
 const debouncedPrintMe = debounce(printMe, 1000);
 setTimeout(() => debouncedPrintMe("I am debounced message 1"), 1800);
-setTimeout(() => debouncedPrintMe("I am debounced message 2"), 1700);
-setTimeout(() => debouncedPrintMe("I am debounced message 3"), 1100);
+
 //4
 console.log("ex4-----------------------");
 function printFibonacci(limit) {
@@ -65,8 +63,7 @@ function printFibonacci(limit) {
     count++;
   });
 }
-console.log(printFibonacci(10));
-
+printFibonacci(10);
 function printFibonacciTimeouts(a = 0, b = 1, count = 0, limit = 10) {
   if (count >= limit) return;
   console.log(b);
@@ -74,7 +71,7 @@ function printFibonacciTimeouts(a = 0, b = 1, count = 0, limit = 10) {
     printFibonacciTimeouts(b, a + b, count + 1, limit);
   }, 500);
 }
-console.log(printFibonacciTimeouts());
+printFibonacciTimeouts(10)
 //5
 let car = {
   make: "Porsche",
@@ -85,14 +82,14 @@ let car = {
   },
 };
 car.description(); //works
-setTimeout(() => {
-  car.description();
-}, 500); //fails
+// setTimeout(() => {
+//   car.description();
+// }, 500); //fails given code from subject which is not using correct syntax
 const newCar = { ...car, year: 2016 };
 console.log(newCar.description());
 setTimeout(car.description.bind(car));
 const newCar2 = { ...newCar, model: "718" };
-setTimeout(newCar2.description.bind(newCar2), 500);
+setTimeout(newCar2.description.bind(newCar2), 500);//this is the correct syntax should use to access into an object
 
 //6
 console.log("ex6-----------------------------");
@@ -103,15 +100,12 @@ Function.prototype.delay = function (ms) {
     }, ms);
   };
 };
-function multiply(a, b) {
-  console.log(a * b);
-}
-multiply.delay(500)(5, 5); // prints 25 after 500 milliseconds
 
 function multiply(a, b, c, d) {
   console.log(a * b + c + d);
 }
 multiply.delay(500)(2, 3, 4, 5);
+
 //7
 console.log("ex7---------------------------------------");
 
@@ -152,17 +146,18 @@ class PrecisionClock extends DigitalClock {
 }
 
 const myClock = new PrecisionClock("my precise clock:", 5000);
-console.log(myClock);
+console.log(myClock, 10);
+
 //8
 console.log("ex8---------------------------");
 function validateStringArg1(fn) {
-  return function (...arguments) {
-    for (let argument of arguments) {
-      if (typeof argument !== "str") {
+  return function (...args) {
+    for (let arg of args) {
+      if (typeof arg !== "string") {
         throw new Error("they are not strings");
       }
     }
-    return fn(...arguments);
+    return fn(...args);
   };
 }
 function orderItems(...itemName) {
@@ -201,3 +196,41 @@ randomDelay()
   });
 randomDelay().then(() => console.log("There appears to have been a delay."));
 //10
+// run 'npm init' and accept all the defaults
+// run 'npm install node-fetch'
+// run 'npm pkg set type=module'
+import fetch from 'node-fetch'
+globalThis.fetch = fetch
+function fetchURLData(url) {
+let fetchPromise = fetch(url).then(response => {
+if (response.status === 200) {
+return response.json();
+} else {
+throw new Error(`Request failed with status ${response.status}`);
+}
+});
+return fetchPromise;
+}
+fetchURLData('https://jsonplaceholder.typicode.com/todos/1')
+.then(data => console.log(data))
+.catch(error => console.error(error.message));
+
+async function fetchAsync(url) {
+  try {
+    const response = await fetch(url);
+    if (response.status === 200) {
+      return await response.json();
+    } else {
+      throw new Error(`Error:${response.status}`);
+    }
+  } catch (error) {
+    throw new Error(`Error: ${error.message}`);
+  }
+}
+fetchAsync('https://jsonplaceholder.typicode.com/todos/1')
+.then(data => console.log(data))
+.catch(error => console.error(error.message))
+
+fetchAsync('http://whatever-url')
+.then(data => console.log(data))
+.catch(error => console.error(error.message))
