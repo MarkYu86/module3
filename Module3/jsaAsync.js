@@ -155,12 +155,12 @@ async function ex5() {
   };
   car.description();
 
-//   setTimeout(() => {
-//     car.description();
-//   }, 500); //fails //comment out this like cause this is undefined
+  //   setTimeout(() => {
+  //     car.description();
+  //   }, 500); //fails //comment out this like cause this is undefined
   const newCar = { ...car, year: 2016 };
   console.log(newCar.description());
-  setTimeout(car.description.bind(car));//this is the correct syntax that should use above
+  setTimeout(car.description.bind(car)); //this is the correct syntax that should use above
   const newCar2 = { ...newCar, model: "718" };
   setTimeout(newCar2.description.bind(newCar2), 500);
 }
@@ -293,37 +293,48 @@ async function ex9() {
 }
 
 //10
-    // run 'npm init' and accept all the defaults
-    // run 'npm install node-fetch'
-    // run 'npm pkg set type=module'
-import fetch from 'node-fetch'
-globalThis.fetch = fetch
+// run 'npm init' and accept all the defaults
+// run 'npm install node-fetch'
+// run 'npm pkg set type=module'
+import fetch from "node-fetch";
+globalThis.fetch = fetch;
 
-async function ex10(){
-    function fetchURLData(url) {
-        let fetchPromise = fetch(url).then(response => {
-        if (response.status === 200) {
+async function ex10() {
+  function fetchURLData(url) {
+    let fetchPromise = fetch(url).then((response) => {
+      if (response.status === 200) {
         return response.json();
-        } else {
+      } else {
         throw new Error(`Request failed with status ${response.status}`);
-        }
-        });
-        return fetchPromise;
-        }
-    async function fetch(url){
-      try{
-        const response = await fetch(url);
-        if(response.status === 200){
-          return await response.json();
-        }else{
-          throw new Error(`Error:${response.status}`)
-        }
       }
-      catch(error){
-        throw new Error(`Error: ${error.message}`)
+    });
+    return fetchPromise;
+  }
+  fetchURLData("https://jsonplaceholder.typicode.com/todos/1")
+    .then((data) => console.log(data))
+    .catch((error) => console.error(error.message));
+
+  async function fetch(url) {
+    try {
+      const response = await fetch(url);
+      if (response.status === 200) {
+        return await response.json();
+      } else {
+        throw new Error(`Error:${response.status}`);
       }
+    } catch (error) {
+      throw new Error(`Error: ${error.message}`);
     }
+  }
+  fetchAsync("https://jsonplaceholder.typicode.com/todos/1")
+    .then((data) => console.log(data))
+    .catch((error) => console.error(error.message));
+
+  fetchAsync("http://whatever-url")
+    .then((data) => console.log(data))
+    .catch((error) => console.error(error.message));
 }
+
 // Sequential Execution of all exercises
 async function runExercises() {
   await ex1();
