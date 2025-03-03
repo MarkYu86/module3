@@ -59,12 +59,28 @@
                 addNews(news.title, news.content)
             })
         }
+        newNews()
 
+        //comment out the setInterval for exercise two otherwise its going go refresh the content every 5 secs.
+        news = [
+            {
+                id: 1, title: 'new News 1',
+                content: "New content1"
+            },
+            {
+                id: 2, title: 'new News 2',
+                content: "New content2"
+            },
+            {
+                id: 3, title: 'new News 3',
+                content: "New content3"
+            }
+        ];
         document.getElementById('submit').addEventListener('click', (event) => {
             event.preventDefault();
             const title = document.getElementById('news-title').value;
             const content = document.getElementById('content').value;
-            news.pop();
+            // news.pop();
             const userNews = {
                 id: 1,
                 title: title,
@@ -75,25 +91,11 @@
             document.getElementById('news-title').value = '';
             document.getElementById('content').value = '';
         });
-//comment out the setInterval for exercise two otherwise its going go refresh the content every 5 secs.
+
         setInterval(() => {
-            news = [
-                {
-                    id: 1, title: 'new News 1',
-                    content: "New content1"
-                },
-                {
-                    id: 2, title: 'new News 2',
-                    content: "New content2"
-                },
-                {
-                    id: 3, title: 'new News 3',
-                    content: "New content3"
-                }
-            ];
             newNews();
         }, 5000);
-        newNews();
+        // newNews();
     </script>
 </body>
 
