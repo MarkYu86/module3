@@ -6,9 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Square Slider</title>
     <style>
-
         /* Square element */
-        .slider {
+        #square {
             position: relative;
             width: 100px;
             height: 100px;
@@ -18,7 +17,6 @@
             animation: slide 3s ease-in-out infinite;
         }
 
-        /* Keyframe animation */
         @keyframes slide {
             0% {
                 top: 50px;
@@ -39,11 +37,7 @@
 </head>
 
 <body>
-
-    <div class="container">
-        <div class="slider"></div>
-    </div>
-
+    <div id="square"></div>
 </body>
 
 </html>
