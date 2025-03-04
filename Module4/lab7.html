@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Square Slider</title>
+    <style>
+
+        /* Square element */
+        .slider {
+            position: relative;
+            width: 100px;
+            height: 100px;
+            top: 0px;
+            transform: translateX(50%);
+            background-color: blue;
+            animation: slide 3s ease-in-out infinite;
+        }
+
+        /* Keyframe animation */
+        @keyframes slide {
+            0% {
+                top: 50px;
+                background-color: red;
+            }
+
+            50% {
+                top: 550px;
+                background-color: blue;
+            }
+
+            100% {
+                top: 50px;
+                background-color: red;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="slider"></div>
+    </div>
+
+</body>
+
+</html>
